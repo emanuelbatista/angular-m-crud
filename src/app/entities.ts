@@ -7,7 +7,12 @@ export let describeDomain = (angularm: AngularmService) => {
         .propertyType('name', 'string')),
     memoryDAO(entityType('client', 'clients', { id: 'id' } )
         .propertyType('id', 'number')
-        .propertyType('name', 'string'))
+        .propertyType('name', 'string')),
+    memoryDAO(entityType('carro','carros', {id: 'id'})
+        .propertyType('id','number')
+        .propertyType('name', 'string')
+        .propertyType('model', 'string'))
+        
     );
     //insert data
     angularm.create('student', {code: 1, name: 'Emanuel' })

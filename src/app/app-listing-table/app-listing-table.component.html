@@ -1,5 +1,5 @@
 <h1>{{entityType.plural | titleCase}}</h1>
-<table data-toggle="table" data-pagination="true" data-search="true">
+<table data-toggle="table" data-pagination="true" [attr.data-search]="entityType.singular !== 'carro'?true:false">
   <thead>
     <tr>
       <th *ngFor="let propertyType of entityType.propertyTypes">{{propertyType.name}}</th>
