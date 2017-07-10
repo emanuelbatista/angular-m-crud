@@ -1,3 +1,4 @@
+import { LinePropertyComponent } from './app-show-entity/line-property/line-property.component';
 import { entityType, memoryDAO, AngularmService } from 'angularm';
 
 export let describeDomain = (angularm: AngularmService) => {
@@ -15,5 +16,7 @@ export let describeDomain = (angularm: AngularmService) => {
         
     );
     //insert data
-    angularm.create('student', {code: 1, name: 'Emanuel' })
+    angularm.create('student', {code: 1, name: 'Emanuel' });
+
+    angularm.dpr('show_line', LinePropertyComponent);
 };

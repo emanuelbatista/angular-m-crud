@@ -1,13 +1,22 @@
 <h1>{{entityType.plural | titleCase}}</h1>
-<table data-toggle="table" data-pagination="true" [attr.data-search]="entityType.singular !== 'carro'?true:false">
+<table [ngClass]="'table table-striped'" data-toggle="table" data-pagination="true" [attr.data-search]="entityType.singular !== 'carro'?true:false">
   <thead>
     <tr>
       <th *ngFor="let propertyType of entityType.propertyTypes">{{propertyType.name}}</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let entity of entities">
       <td *ngFor="let property of entity.mountProperties()">{{property.value}}</td>
+      <td>
+        <button (click)="show(entity.key)" [ngClass]="'btn btn-default btn-xs'">Show</button>
+        <button (click)="edit(entity.key)" [ngClass]="'btn btn-default btn-xs'">Edit</button>
+        <button (click)="destroy(entity.key)" [ngClass]="'btn btn-default btn-xs btn-danger'">Destroy</button>
+      </td>
     </tr>
+
   </tbody>
+  <button (click)="create()" [ngClass]="'btn btn-primary'">New {{entityType.singular | titleCase}}</button>
+
 </table>

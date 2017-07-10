@@ -1,0 +1,9 @@
+<form [formGroup]="myForm" (submit)="onSubmit(myForm.value)" [ngClass]="'form-horizontal'">
+    <div [mgForeachPropertyType]="'form_line'" [entityType]="entityType"
+         [mgForm]="myForm"></div>
+    <div [ngClass]="'form-group'">
+      <div [ngClass]="'col-lg-offset-2 col-lg-10'">
+        <input type="submit" value="Create {{ entityType.singular | titleCase }}" [ngClass]="'btn btn-primary'">
+      </div>
+    </div>
+</form>

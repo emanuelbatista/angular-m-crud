@@ -1,0 +1,4 @@
+<div *ngIf='entity'>
+  <dl [ngClass]="'dl-horizontal'" [mgForeachProperty]="'show_line'" [entity]="entity"></dl>
+  <a [routerLink]="['/', entity.entityType.plural]">Back</a>
+</div>

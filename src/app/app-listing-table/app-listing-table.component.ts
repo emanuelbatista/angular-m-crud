@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
-import { EntityTypeComponent, AngularmService, entityType } from 'angularm';
+import { ActivatedRoute, Router } from '@angular/router'
+import { EntityTypeComponent, AngularmService, entityType, Entity } from 'angularm';
 
 @Component({
   selector: 'app-app-listing-table',
@@ -9,9 +9,12 @@ import { EntityTypeComponent, AngularmService, entityType } from 'angularm';
 })
 export class AppListingTableComponent extends EntityTypeComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private angularService: AngularmService) {
+  constructor(
+    private activatedRoute: ActivatedRoute, 
+    private router: Router,
+    private angularService: AngularmService) {
     super();
-    this.route.params.subscribe(params => {
+    this.activatedRoute.params.subscribe(params => {
       this.angularService.findEntityType(params['entity'])
         .then((entityType) => {
           this.entityType = entityType;
@@ -28,5 +31,27 @@ export class AppListingTableComponent extends EntityTypeComponent implements OnI
   ngOnInit() {
     
   }
+
+  show(id: any){
+    this.router.navigate([id.toString(), 'show'], {relativeTo: this.activatedRoute});
+  }
+
+  edit(id: any){
+    this.router.navigate([id.toString(), 'edit']);
+  }
+
+  public destroy(id: any){
+    this.angularService.delete(this.entityType.singular,id);
+    this.entities = this.entities.filter((value, index, array)=>{
+      if(value.key!=id){
+        return value;
+      }
+    });
+  }
+  
+  create(){
+    this.router.navigate(['new'],{relativeTo: this.activatedRoute});
+  }
+
 
 }
